@@ -1,0 +1,12 @@
+//aggregate
+//match
+ db.students.aggregate([{$match:{rollno:{$gt:1}}}])
+
+//group and sum
+db.students.aggregate([{$group:{_id:"$rollno",number:{$sum:1}}}])
+
+//sort
+ db.students.aggregate([{$match:{rollno:{$gt:2}}},{$sort:{rollno:-1}}])
+
+//limit
+ db.students.aggregate([{$match:{rollno:{$gt:1}}},{$limit:2}])

@@ -1,0 +1,15 @@
+//single field index
+db.students.createIndex({rollno:1})
+
+//compound index
+ db.students3.createIndex({rollno:1,marks:1})
+
+//multikey index
+db.students5.insertOne({subject:['naths','english']})
+db.students.createIndex({subject:1})
+
+//text index
+ db.students6.insertOne({info:"he is a good stud"})
+db.students6.createIndex({info:"text"})
+ db.students6.find({$text:{$search:"good"}})
+

@@ -1,0 +1,9 @@
+//map reduce
+
+db.students.mapReduce(
+			function() {emit(this.names,this.rollno)},
+			function(key,value) {return Array.sum(value)},
+			{out:"ot"}
+)
+
+db.ot.find()

@@ -1,0 +1,56 @@
+//create db
+use database_name
+
+//to see database
+show dbs
+
+//to see collection
+show collection
+
+//create collection
+db.createCollection("collection_name")
+
+//CRUD
+//1) create
+db.students.insertOne({rollno:1,name:"krushna"})
+
+db.students.insertMany([{rollno:2,name:"akash"},{rollno:3,name:"supriya"},{rollno:4,name:"divya"},{rollno:5,name:"abhi"},{rollno:6,name:"devil"}])
+
+//2)read
+db.students.find()
+db.students.find({name:"devil"})
+db.students.find({rollno:{$gt:1}})
+
+//3)upadate
+db.students.updateOne({rollno:6},{$set:{name:"lol"}})
+db.students.updateMany({rollno:{$gt:3}},{$set:{name:"mosambi"}})
+
+//4)delete
+db.students.deleteOne({rollno:6})
+db.students.deleteMany({rollno:{$gt:4}})
+
+
+
+
+//create with validation
+db.createCollection("students2",{
+	validator:{
+		$jsonSchema:{
+			required:["rollno","name"],
+			properties:{
+				rollno:{
+					bsonType:"number",
+					description:"number only"
+			},
+				name:{
+					bsonType:"string",
+					description:"string only"
+
+}
+
+		}
+
+	}
+}
+}
+)
